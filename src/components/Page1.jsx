@@ -343,11 +343,13 @@
 
 
 
-import React from "react";
+import React, {useState} from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
 
 const Page1 = () => { 
+    const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div>
       {/* ================= NAVBAR ================= */}
@@ -357,7 +359,7 @@ const Page1 = () => {
           <img
             src="/logo (3).png"
             alt="EA Vertex Media Logo"
-            className="h-8 sm:h-10 object-contain cursor-pointer"
+            className="h-15 sm:h-25 object-contain cursor-pointer"
           />
 
           {/* Links */}
@@ -367,7 +369,26 @@ const Page1 = () => {
             <a href="#portfolio">Showreel</a>
             <a href="#contact">Contact</a>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white text-xl"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+
         </div>
+
+         {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden bg-black border-t border-gray-800 flex flex-col text-center py-6 space-y-4 text-gray-300">
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#portfolio">Showreel</a>
+            <a href="#contact">Contact</a>
+          </div>
+        )}
       </nav>
 
       {/* HERO SECTION */}
